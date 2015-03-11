@@ -534,9 +534,6 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
         if (swipeCurrentAction == SwipeListView.SWIPE_ACTION_CHOICE) {
             generateChoiceAnimate(view, position);
         }
-        if(swipeCurrentAction == SwipeListView.SWIPE_ACTION_NONE){
-            swipeListView.onSwipeNoAction(position, swapRight);
-        }
     }
 
     /**
@@ -904,7 +901,15 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
                         swipeListView.onStartClose(downPosition, swipingRight);
                         swipeCurrentAction = SwipeListView.SWIPE_ACTION_REVEAL;
                     } else {
-                        if (swipingRight && swipeActionRight == SwipeListView.SWIPE_ACTION_DISMISS) {
+                        if(swipingRight && swipeActionRight == SwipeListView.SWIPE_ACTION_NONE){
+                            swipeListView.onSwipeNoAction(downPosition, swipingRight, deltaMode);
+                            swiping = false;
+                            return true;
+                        } else if (!swipingRight && swipeActionLeft == SwipeListView.SWIPE_ACTION_NONE) {
+                            swipeListView.onSwipeNoAction(downPosition, swipingRight, deltaMode);
+                            swiping = false;
+                            return true;
+                        } else if (swipingRight && swipeActionRight == SwipeListView.SWIPE_ACTION_DISMISS) {
                             swipeCurrentAction = SwipeListView.SWIPE_ACTION_DISMISS;
                         } else if (!swipingRight && swipeActionLeft == SwipeListView.SWIPE_ACTION_DISMISS) {
                             swipeCurrentAction = SwipeListView.SWIPE_ACTION_DISMISS;
