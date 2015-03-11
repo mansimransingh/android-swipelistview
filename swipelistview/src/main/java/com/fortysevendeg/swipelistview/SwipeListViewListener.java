@@ -117,4 +117,9 @@ public interface SwipeListViewListener {
      */
     void onLastListItem();
 
+    /**
+     * There was a valid swipe but no action is to be taken 
+     */
+    void onSwipeNoAction(int position, boolean toRight);
+
 }

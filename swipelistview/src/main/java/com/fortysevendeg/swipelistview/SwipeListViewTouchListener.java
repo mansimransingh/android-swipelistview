@@ -534,6 +534,9 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
         if (swipeCurrentAction == SwipeListView.SWIPE_ACTION_CHOICE) {
             generateChoiceAnimate(view, position);
         }
+        if(swipeCurrentAction == SwipeListView.SWIPE_ACTION_NONE){
+            swipeListView.onSwipeNoAction(position, swapRight);
+        }
     }
 
     /**

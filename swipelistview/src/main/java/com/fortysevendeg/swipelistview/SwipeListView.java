@@ -436,6 +436,17 @@ public class SwipeListView extends ListView {
     }
 
     /**
+     * Notifies onSwipeNoAction 
+     * @parem position Item swipes
+     * @param toRight if swipe was to the right
+     */
+    protected void onSwipeNoAction(int position, boolean toRight){
+        if(swipeListViewListener != null && position != ListView.INVALID_POSITION){
+            swipeListViewListener.onSwipeNoAction(position, toRight);
+        }
+    }
+
+    /**
      * Notifies onClosed
      *
      * @param position  Item closed
